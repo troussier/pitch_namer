@@ -1,0 +1,269 @@
+@charset "UTF-8";
+
+@use "../_base/variable" as var;
+@use "../_base/mixin";
+
+// レスポンシブ非表示
+@each $label, $value in var.$breakpoints-up {
+    .u-mq-up-#{$label}-only {
+        @include mixin.mq-down(#{$label}) {
+            display: none !important;
+        }
+    }
+}
+
+@each $label, $value in var.$breakpoints-down {
+    .u-mq-down-#{$label}-only {
+        @include mixin.mq-up(#{$label}) {
+            display: none !important;
+        }
+    }
+}
+
+// テキストサイズ
+.u-text-large-1 {
+    font-size: 120% !important;
+}
+.u-text-large-2 {
+    font-size: 140% !important;
+}
+.u-text-large-3 {
+    font-size: 160% !important;
+}
+.u-text-large-4 {
+    font-size: 180% !important;
+}
+.u-text-large-5 {
+    font-size: 200% !important;
+}
+.u-text-small-1 {
+    font-size: 90% !important;
+}
+.u-text-small-2 {
+    font-size: 80% !important;
+}
+.u-text-small-3 {
+    font-size: 70% !important;
+}
+.u-text-small-4 {
+    font-size: 60% !important;
+}
+.u-text-small-5 {
+    font-size: 50% !important;
+}
+
+// テキストカラー
+.u-text-red {
+    color: #f00 !important;
+}
+.u-text-gray {
+    color: #999 !important;
+}
+.u-text-color-inherit {
+    color: inherit !important;
+}
+
+.u-text-normal-color {
+    color: var.$color-text !important;
+}
+
+.u-text-theme-color {
+    color: var.$color-theme !important;
+}
+
+$value: 0;
+@while $value <= 200 {
+    // マージン
+    .u-mt-#{$value} {
+        margin-top: #{$value}px !important;
+    }
+    .u-mr-#{$value} {
+        margin-right: #{$value}px !important;
+    }
+    .u-mb-#{$value} {
+        margin-bottom: #{$value}px !important;
+    }
+    .u-ml-#{$value} {
+        margin-left: #{$value}px !important;
+    }
+    // パディング
+    .u-pt-#{$value} {
+        padding-top: #{$value}px !important;
+    }
+    .u-pr-#{$value} {
+        padding-right: #{$value}px !important;
+    }
+    .u-pb-#{$value} {
+        padding-bottom: #{$value}px !important;
+    }
+    .u-pl-#{$value} {
+        padding-left: #{$value}px !important;
+    }
+    @include mixin.mq-up() {
+        // PCマージン
+        .u-pc-mt-#{$value} {
+            margin-top: #{$value}px !important;
+        }
+        .u-pc-mr-#{$value} {
+            margin-right: #{$value}px !important;
+        }
+        .u-pc-mb-#{$value} {
+            margin-bottom: #{$value}px !important;
+        }
+        .u-pc-ml-#{$value} {
+            margin-left: #{$value}px !important;
+        }
+        // PCパディング
+        .u-pc-pt-#{$value} {
+            padding-top: #{$value}px !important;
+        }
+        .u-pc-pr-#{$value} {
+            padding-right: #{$value}px !important;
+        }
+        .u-pc-pb-#{$value} {
+            padding-bottom: #{$value}px !important;
+        }
+        .u-pc-pl-#{$value} {
+            padding-left: #{$value}px !important;
+        }
+    }
+    // SPマージン
+    @include mixin.mq-down() {
+        .u-sp-mt-#{$value} {
+            margin-top: #{$value}px !important;
+        }
+        .u-sp-mr-#{$value} {
+            margin-right: #{$value}px !important;
+        }
+        .u-sp-mb-#{$value} {
+            margin-bottom: #{$value}px !important;
+        }
+        .u-sp-ml-#{$value} {
+            margin-left: #{$value}px !important;
+        }
+        // SPパディング
+        .u-sp-pt-#{$value} {
+            padding-top: #{$value}px !important;
+        }
+        .u-sp-pr-#{$value} {
+            padding-right: #{$value}px !important;
+        }
+        .u-sp-pb-#{$value} {
+            padding-bottom: #{$value}px !important;
+        }
+        .u-sp-pl-#{$value} {
+            padding-left: #{$value}px !important;
+        }
+    }
+    @if $value < 100 {
+        $value: $value + 5;
+    } @else if $value < 160 {
+        $value: $value + 10;
+    } @else {
+        $value: $value + 20;
+    }
+}
+
+/* ======================================== */
+/* フロート */
+/* ======================================== */
+.u-float-left {
+    float: left !important;
+    margin-top: 0;
+    margin-right: 20px;
+    margin-bottom: 0;
+}
+
+.u-float-right {
+    float: right !important;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 20px;
+}
+
+.u-clear {
+    clear: both !important;
+}
+
+.u-clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+// SP画像サイズ
+$value: 50;
+@while $value <= 300 {
+    .u-sp-width-#{$value} {
+        @include mixin.mq-down() {
+            max-width: #{$value}px !important;
+        }
+    }
+    $value: $value + 50;
+}
+
+// テキスト配置
+.u-align-left {
+    text-align: left !important;
+}
+.u-align-center {
+    text-align: center !important;
+}
+.u-align-right {
+    text-align: right !important;
+}
+
+.u-valign-top {
+    vertical-align: top !important;
+}
+.u-valign-middle {
+    vertical-align: middle !important;
+}
+.u-valign-bottom {
+    vertical-align: bottom !important;
+}
+
+// フルードイメージ
+.u-fluid-image {
+    width: 100%;
+    height: auto;
+    vertical-align: top;
+}
+
+
+// 改行禁止
+.u-nowrap {
+    white-space: nowrap !important;
+}
+
+
+// インラインブロック
+.u-inline-block {
+    display: inline-block !important;
+}
+.u-inline-block--2column {
+    @extend .u-inline-block;
+    width: 48%;
+}
+.u-inline-block--30pct {
+    @extend .u-inline-block;
+    width: 30%;
+}
+
+// ポインタイベントを消去
+.u-pointer-events-none {
+    color: inherit;
+    text-decoration: none;
+    pointer-events: none;
+}
+
+// ========================================
+// このクラスのあたった要素の中の<br>タグを無効にする
+// ========================================
+.u-pc-br-none {
+    @include mixin.mq-up() {
+        br {
+            display: none;
+        }
+    }
+}

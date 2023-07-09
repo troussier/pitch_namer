@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+@use "../_base/variable" as var;
+@use "../_base/mixin";
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+html {
+    color: var.$color-text;
+    font-size: var.$font-size;
+    font-family: var.$font-family-sans-serif;
+    line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+}
+
+a {
+    color: var.$color-link;
+    text-decoration: underline;
+    transition: color 200ms ease;
+    @include mixin.mq-up() {
+        body &:hover {
+            color: var.$color-link-hover;
+            text-decoration: none;
+        }
+    }
+}
+
+img {
+    max-width: 100%;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>サイトネーム</title>
+    <meta name="description" content="説明文を入力">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="p-list" data-wrap>
+        <p class="p-card" data-pitch="a" data-name="ラ">A</p>
+        <p class="p-card" data-pitch="b" data-name="シ">B</p>
+        <p class="p-card" data-pitch="c" data-name="ド">C</p>
+        <p class="p-card" data-pitch="d" data-name="レ">D</p>
+        <p class="p-card" data-pitch="e" data-name="ミ">E</p>
+        <p class="p-card" data-pitch="f" data-name="ファ">F</p>
+        <p class="p-card" data-pitch="g" data-name="ソ">G</p>
+    <!-- /.p-list --></div>
+    <p class="p-button"><button data-shuffle>Shuffle</button></p>
+    <!-- <button class="p-button" data-toggle>伊←→英</button> -->
+
+    <script>
+        'use strict';
+        (function() {
+            const elms = document.querySelectorAll('[data-pitch]');
+            const wrap = document.querySelector('[data-wrap]');
+            const button = document.querySelector('[data-shuffle]');
+
+            // ランダムな順序で要素を処理する関数
+            function shuffleAndProcessElements() {
+                // elmsを配列に変換
+                const elmsArray = Array.from(elms);
+
+                // Fisher-Yatesアルゴリズムを使用して配列をシャッフル
+                for (let i = elmsArray.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [elmsArray[i], elmsArray[j]] = [elmsArray[j], elmsArray[i]];
+                }
+
+                // ランダムな順序で要素を処理
+                elmsArray.forEach(function (val) {
+                    // 処理
+                    console.log(val);
+                    wrap.insertAdjacentElement('afterbegin', val);
+                });
+            }
+
+            // ボタンクリック時にランダムな順序で要素を処理する
+            button.addEventListener('click', shuffleAndProcessElements);
+        })();
+
+        // (function() {
+        //     const button = document.querySelector('[data-toggle]');
+        //     button.addEventListener('click', function(val) {
+        //         console.log(val);
+        //     });
+        // })();
+    </script>
+</body>
+</html>
